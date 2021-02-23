@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "Avenir";
+  src: url('AvenirLTPro-Roman.otf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url('AvenirLTPro-Black.otf');
+  font-weight: 700;
+}
+
+html,
+body {
+  font-family: 'Avenir', sans-serif;
+  padding: 2rem;
+}
+
+form {
+  margin-bottom: 5rem;
+}
+
+.notes p {
+  max-width: 720px;
+}
+
+/* Styles for the actual inputs: */
+
+friendly-input {
+  display: inline-block;
+}
+
+friendly-input input {
+  font-family: 'Avenir', sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: 0;
+  margin-bottom: .5rem;
+  display: inline;
+  width: auto;
+  transition: size .2s ease;
+}
+
+friendly-input .label {
+  font-weight: 800;
+  font-size: 14px;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div class="notes">
+      <p><mark>Try me!</mark><span style="font-size: 3rem">👇🏼</span></p>
+
+      <br>
+    </div>
+
+
+    <form>
+      <friendly-input>
+        <div class="input-wrapper">
+          <input type="text" placeholder="" value="Maximilian" size="4"
+            onkeyup="adjustWidth(event)">
+          <solar-icon class="close" svgicon="solar-close">
+            <svg width="10" height="10">
+              <use width="10" height="10"></use>
+            </svg>
+          </solar-icon>
+        </div>
+        <div class="label">First Name</div>
+      </friendly-input>
+      <friendly-input>
+        <div class="input-wrapper">
+          <input type="text" placeholder="" value="Muster" size="4"
+            onkeyup="adjustWidth(event)">
+          <solar-icon class="close" svgicon="solar-close">
+            <svg width="10" height="10">
+              <use width="10" height="10"></use>
+            </svg>
+          </solar-icon>
+        </div>
+        <div class="label">Last Name</div>
+      </friendly-input>
+    </form>
+
+<hr>
+<div class="notes">
+  <h3>Notes</h3>
+  <p>Getting the width of an input field to adjust correctly is a bit tricky. You have to adjust the <mark>size</mark> attribute of the input, which is based on <mark>characters</mark>, not pixels. Which means that thin characters will leave extra space and wide characters will risk running out of space.</p>
+  
+  <p>Here's the basic approach I took in plain javascript:</p>
+  <br>
+  <p>1. First, set each input's initial size based on its character length:</p>
+  <pre><code class="language-js">
+    const INPUTS = document.querySelectorAll('friendly-input input')
+        
+    INPUTS.forEach((i) => {
+      const CHARLENGTH = i.value.length
+      i.size = CHARLENGTH > 4 ? i.value.length : 4
+    })
+  </code>
+  </pre>
+<p>2. Next, call this function on <code class="language-js">onkeyup</code> of each input field. 
+  
+  
+</p>
+<ul>
+  <li>The ternery operator is there to make sure that the input field always has a minimum size of <mark>4</mark>.</li>
+  <li>the <mark>+2</mark> added to the length is there to add a little wiggle room in case many of the characters are wide (O,W,Z, etc.)</li>
+</ul>
+  <pre><code class="language-js">
+    function adjustWidth(e) {
+      const CHARLENGTH = e.target.value.length > 4 ? e.target.value.length + 2 : 4
+      e.target.size = CHARLENGTH
+    }
+  </code>
+  </pre>
+  <p>—Nick</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+    <script>
+      const INPUTS = document.querySelectorAll('friendly-input input')
+      INPUTS.forEach((i) => {
+        const CHARLENGTH = i.value.length
+        i.size = CHARLENGTH > 4 ? i.value.length : 4
+      })
+
+      function adjustWidth(e) {
+        console.log('press');
+        const CHARLENGTH = e.target.value.length > 4 ? e.target.value.length + 2 : 4
+        e.target.size = CHARLENGTH
+      }
+
+    </script>
+  </body>
+</html>
